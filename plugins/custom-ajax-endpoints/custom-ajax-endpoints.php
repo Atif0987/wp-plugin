@@ -11,13 +11,11 @@ if (!defined('ABSPATH')) {
 }
 
 function fetch_architecture_projects() {
-    // Check if the user is logged in
     $is_logged_in = is_user_logged_in();
 
-    // Set posts per page (6 for logged-in users, 3 for logged-out users)
     $post_count = $is_logged_in ? 6 : 3;
 
-    // Get page number (pagination only for logged-in users)
+    
     $paged = $is_logged_in ? (isset($_GET['page']) ? intval($_GET['page']) : 1) : 1;
 
     $args = [
@@ -48,10 +46,10 @@ function fetch_architecture_projects() {
         wp_reset_postdata();
     }
 
-    // Set total pages (only relevant for logged-in users)
+    
     $total_pages = $is_logged_in ? $query->max_num_pages : 1;
 
-    // Send JSON response
+    // JSON response
     wp_send_json([
         'success'     => true,
         'data'        => $projects,
@@ -61,7 +59,7 @@ function fetch_architecture_projects() {
     wp_die();
 }
 
-// Register AJAX actions
+// Register AJAX
 add_action('wp_ajax_fetch_architecture_projects', 'fetch_architecture_projects');
 add_action('wp_ajax_nopriv_fetch_architecture_projects', 'fetch_architecture_projects');
 

@@ -40,7 +40,7 @@ function ikon_register_projects_post_type() {
         'labels'             => $labels,
         'public'             => true,
         'has_archive'        => true,
-        'show_in_rest'       => true, // Enables Gutenberg editor
+        'show_in_rest'       => true, 
         'supports'           => ['title', 'editor', 'thumbnail'],
         'hierarchical'       => false,
         'menu_position'      => 5,
